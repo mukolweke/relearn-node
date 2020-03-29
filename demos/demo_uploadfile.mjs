@@ -1,26 +1,24 @@
 import { createServer } from 'http';
 import fs from 'fs';
-import { IncomingForm } from 'formidable';
+import {IncomingForm} from 'formidable';
 
 
 createServer(function (req, res) {
     if (req.url == '/fileupload') {
-        var form = new IncomingForm();
+        let form = new IncomingForm();
 
         form.parse(req, function (err, fields, files) {
             let oldpath = files.filetoupload.path;
 
-            console.log(oldpath);
-
             let newpath = '/Users/molukaka/Projects/www/node/' + files.filetoupload.name;
-
-            console.log(newpath)
 
             fs.rename(oldpath, newpath, function (err) {
                 if (err) throw err;
                 res.write('File uploaded and moved!');
                 res.end();
             });
+
+            process.exit()
         });
       } else {
 
