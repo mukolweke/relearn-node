@@ -1,11 +1,11 @@
-let http = require('http');
-let fs = require('fs');
-var formidable = require('formidable');
+import { createServer } from 'http';
+import fs from 'fs';
+import { IncomingForm } from 'formidable';
 
 
-http.createServer(function (req, res) {
+createServer(function (req, res) {
     if (req.url == '/fileupload') {
-        var form = new formidable.IncomingForm();
+        var form = new IncomingForm();
 
         form.parse(req, function (err, fields, files) {
             let oldpath = files.filetoupload.path;
@@ -16,11 +16,11 @@ http.createServer(function (req, res) {
 
             console.log(newpath)
 
-            // fs.rename(oldpath, newpath, function (err) {
-            //     if (err) throw err;
-            //     res.write('File uploaded and moved!');
-            //     res.end();
-            //   });
+            fs.rename(oldpath, newpath, function (err) {
+                if (err) throw err;
+                res.write('File uploaded and moved!');
+                res.end();
+            });
         });
       } else {
 

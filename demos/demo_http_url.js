@@ -1,8 +1,8 @@
-let http = require('http');
+import { createServer } from 'http';
 
 // e.g http://localhost:8080/dashboard
 
-http.createServer((req, res)=>{
+createServer((req, res)=>{
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/html');
 

@@ -1,13 +1,13 @@
-let http = require('http');
-let url = require('url');
+import { createServer } from 'http';
+import { parse } from 'url';
 
 // e.g http://localhost:8080/?year=2019&month=April
 
-http.createServer((req, res)=>{
+createServer((req, res)=>{
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/html');
 
-    var q = url.parse(req.url, true).query;
+    var q = parse(req.url, true).query;
 
 
     // console.log(q.host); //returns 'localhost:8080'

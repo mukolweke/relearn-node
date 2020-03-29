@@ -4,17 +4,17 @@
  * Read, Create, Update, Delete, Rename files
  */
 
- let http = require('http');
- let fs = require('fs');
+ import { createServer } from 'http';
+ import { readFile, appendFile, open, writeFile, unlink, rename } from 'fs';
 
-http.createServer((req, res)=>{
+createServer((req, res)=>{
 
     /** 
      * Read file
      * 
      * readFile
      */
-    fs.readFile('../index.html', (err, data)=>{
+    readFile('../index.html', (err, data)=>{
         res.writeHead(200, {'Content-Type' : 'text/html'});
 
         res.write(data);
@@ -29,7 +29,7 @@ http.createServer((req, res)=>{
      *  open
      *  writeFile
      */
-    fs.appendFile(
+    appendFile(
         '../mynewfile1.txt', 
         'Generated content!', 
         (err)=>{
@@ -37,7 +37,7 @@ http.createServer((req, res)=>{
             console.log('Saved');
     });
 
-    fs.open(
+    open(
         '../mynewfile2.txt', 
         'w',  
         (err, file)=>{
@@ -46,7 +46,7 @@ http.createServer((req, res)=>{
     });
 
     // NB: replaces the specified file and content if it exists
-    fs.writeFile(
+    writeFile(
         '../mynewfile3.txt', 
         'Hello Test content!', 
         (err)=>{
@@ -61,7 +61,7 @@ http.createServer((req, res)=>{
      *  writeFile - rewrites
      */
 
-    fs.writeFile('../mynewfile3.txt', 'This is my text file', function (err) {
+    writeFile('../mynewfile3.txt', 'This is my text file', function (err) {
         if (err) throw err;
         console.log('Replaced!');
     });
@@ -73,7 +73,7 @@ http.createServer((req, res)=>{
      * unlink
      */
 
-    fs.unlink('../mynewfile1.txt', function (err) {
+    unlink('../mynewfile1.txt', function (err) {
         if (err) throw err;
         console.log('File deleted!');
     });
@@ -83,7 +83,7 @@ http.createServer((req, res)=>{
      * 
      * rename
      */
-    fs.rename('../myrenamedfile.txt', '../myrenamedfile.txt', function (err) {
+    rename('../myrenamedfile.txt', '../myrenamedfile.txt', function (err) {
         if (err) throw err;
         console.log('File Renamed!');
     });

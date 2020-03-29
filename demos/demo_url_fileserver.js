@@ -1,12 +1,12 @@
-let http = require('http');
-let url = require('url');
-let fs = require('fs');
+import { createServer } from 'http';
+import { parse } from 'url';
+import { readFile } from 'fs';
 
-http.createServer((req, res)=>{
-    let q = url.parse(req.url, true);
+createServer((req, res)=>{
+    let q = parse(req.url, true);
     let filename = "." + q.pathname
 
-    fs.readFile(filename, (err, data)=>{
+    readFile(filename, (err, data)=>{
         if(err){
             res.writeHead(404, {'Content-Type' : 'text/html'});
             return res.end("404 Not Found");

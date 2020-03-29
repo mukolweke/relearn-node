@@ -1,17 +1,17 @@
-const http = require('http');
-var dateTime = require('./modules/firstModule');
+import { createServer } from 'http';
+import { myDateTime } from './modules/firstModule';
 
 const hostname = '127.0.0.1';
 
 const port = 3000;
 
 //create a server object:
-const server = http.createServer(
+const server = createServer(
     (req, res) => {  
         res.statusCode = 200  
         res.setHeader('Content-Type', 'text/html');
         //write a response to the client
-        res.write("The date and time are currently: " + dateTime.myDateTime()); 
+        res.write("The date and time are currently: " + myDateTime()); 
         //end the response
         res.end();
     }
