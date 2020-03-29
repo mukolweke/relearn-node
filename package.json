@@ -3,6 +3,7 @@
     "type": "module",
     "dependencies": {
         "esm": "^3.2.25",
-        "formidable": "^1.2.2"
+        "formidable": "^1.2.2",
+        "nodemailer": "^6.4.6"
     }
 }
